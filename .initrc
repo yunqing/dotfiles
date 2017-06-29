@@ -9,11 +9,11 @@ export PATH
 # export PATH="/home/yunqing/anaconda/bin:$PATH"
 
 # added by Yunqing Gong
-export PYTHONPATH=/home/yunqing/caffe/python:$PYTHONPATH
-export PATH="/home/yunqing/caffe/build/tools:$PATH"
+export PYTHONPATH="$HOME/caffe/python:$PYTHONPATH"
+export PATH="$HOME/caffe/build/tools:$PATH"
 
 # added by Yunqing Gong
-#export LD_LIBRARY_PATH=/home/yunqing/anaconda/lib:$LD_LIBRARY_PATH
+#export LD_LIBRARY_PATH="$HOMEanaconda/lib:$LD_LIBRARY_PATH"
 
 # added by Yunqing Gong
 source $HOME/.aliases
@@ -27,8 +27,8 @@ eval "$(pyenv init -)"
 export TERM=xterm-256color
 
 # added by Gong Yunqing for opencv tools
-export PATH="/home/yunqing/opencv/bin:$PATH"
-# export LD_LIBRARY_PATH=/home/yunqing/opencv/lib:$LD_LIBRARY_PATH
+export PATH="$HOME/opencv/bin:$PATH"
+# export LD_LIBRARY_PATH=$HOME/opencv/lib:$LD_LIBRARY_PATH
 
 # added by Gong Yunqing for rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -44,4 +44,4 @@ export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
 eval "$(goenv init -)"
 
-. /home/yunqing/torch/install/bin/torch-activate
+. $HOME/torch/install/bin/torch-activate
