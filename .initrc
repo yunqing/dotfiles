@@ -1,0 +1,47 @@
+# added by CUDA installer, moved here by Gong Yunqing
+export CUDA_HOME=/usr/local/cuda-8.0
+export LD_LIBRARY_PATH=${CUDA_HOME}/lib64
+
+PATH=${CUDA_HOME}/bin:${PATH}
+export PATH
+
+# added by Anaconda 2.1.0 installer
+# export PATH="/home/yunqing/anaconda/bin:$PATH"
+
+# added by Yunqing Gong
+export PYTHONPATH=/home/yunqing/caffe/python:$PYTHONPATH
+export PATH="/home/yunqing/caffe/build/tools:$PATH"
+
+# added by Yunqing Gong
+#export LD_LIBRARY_PATH=/home/yunqing/anaconda/lib:$LD_LIBRARY_PATH
+
+# added by Yunqing Gong
+source $HOME/.aliases
+
+# add by Gong Yunqing for pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# added by Gong Yunqing for 256 color
+export TERM=xterm-256color
+
+# added by Gong Yunqing for opencv tools
+export PATH="/home/yunqing/opencv/bin:$PATH"
+# export LD_LIBRARY_PATH=/home/yunqing/opencv/lib:$LD_LIBRARY_PATH
+
+# added by Gong Yunqing for rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+eval "$(rbenv init -)"
+
+# added by Gong Yunqing for locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# added by Gong Yunqing for goenv
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+
+. /home/yunqing/torch/install/bin/torch-activate
