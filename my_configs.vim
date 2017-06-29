@@ -3,6 +3,8 @@ command Rtws execute "%s/[ \t]\\+$//g"
 map gt :Rtws<cr>
 
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
+autocmd FileType python setlocal shiftwidth=2 tabstop=2
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 
 " vim scheme
 colorscheme jellybeans
