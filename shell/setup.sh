@@ -1,0 +1,14 @@
+#!/bin/bash
+# install zsh
+if [[ "$OSTYPE" == "darwin"*  ]]; then
+    brew install zsh
+else
+    printf "%s\n" "$1" | sudo --stdin apt install -y zsh
+fi
+
+# clone zprezto
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
+# copy config
+cp .* $HOME
+cat patchrc >> ~/.zshrc

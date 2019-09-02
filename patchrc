@@ -1,0 +1,6 @@
+if [ -f ~/.initrc ]; then
+    . ~/.initrc
+fi
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
+fi

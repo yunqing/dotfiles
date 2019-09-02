@@ -1,0 +1,29 @@
+alias playground=$HOME/Projects/playground
+alias kaggle=$HOME/Projects/kaggle
+
+# alias gt="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches"
+alias gt="git tree"
+alias ganw="sh -c 'git diff -U0 -w --no-color \$@ | git apply --cached --ignore-whitespace --unidiff-zero -' XXX"
+alias gdnw='git diff -U0 -w'
+
+alias fn="find . -name"
+alias fg1="fg %1"
+alias fg2="fg %2"
+alias fg3="fg %3"
+alias fg4="fg %4"
+
+alias mrun='matlab -nodesktop -nosplash -nodisplay -r'
+
+function http() {
+    if [ $# != 1 ] && [ $# != 0 ]; then
+        echo "Usage: http [port=8081]"
+    else
+        if [ $# -eq 1 ]; then
+            port=$1
+        else
+            port=8081
+        fi
+        echo "http://"$(ifconfig | grep inet | grep 10 | awk '{print $2}' | cut -d: -f2):$port
+        python -m ComplexHTTPServer $port
+    fi
+}

@@ -1,5 +1,0 @@
-alias playground=$HOME/Projects/playground
-alias sensetime=$HOME/Projects/sensetime
-alias kaggle=$HOME/Projects/kaggle
-
-alias gt="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches"
