@@ -1,7 +1,15 @@
 #!/bin/bash
+plugins=(
+    shell
+    git
+    vim
+    tmux
+    pyenv
+)
+
 read -p "Need your root password to install some packages:" password
 curr_dir=$(pwd)
-ls | while read -r name; do
+for name in ${plugins[@]}; do
     if [ -d "$name" ]; then
         echo "------"
         echo "Setting up $name ..."
