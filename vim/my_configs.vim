@@ -2,10 +2,15 @@
 command Rtws execute "%s/[ \t]\\+$//g"
 map gt :Rtws<cr>
 
-autocmd Filetype cpp setlocal ts=4 sts=4 sw=4
+autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd FileType matlab setlocal commentstring=%\ %s
+
+" https://github.com/rhysd/vim-clang-format
+command Fc ClangFormat
+command Fct ClangFormatAutoToggle
+autocmd VimEnter * ClangFormatAutoEnable
 
 set cindent
 set cinoptions=g-1
@@ -34,6 +39,13 @@ map g' <esc>a''<esc>
 
 " set number
 set number
+" https://jeffkreeftmeijer.com/vim-number
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
+augroup END
+
 set mouse=nicr
 
 command Sd SyntasticToggleMode
@@ -55,6 +67,7 @@ map <C-l> :NERDTreeToggle<CR>
 
 " Goyo
 nnoremap gz :Goyo<cr>
+let g:goyo_linenr = 1
 
 set history=1000
 
@@ -88,10 +101,10 @@ nnoremap <Left> :bprev<CR>
 nnoremap <Right> :bnext<CR>
 
 " lightline-buffer settings
-let g:lightline_buffer_logo = ' '
-let g:lightline_buffer_readonly_icon = ''
+let g:lightline_buffer_logo = '✎ '
+let g:lightline_buffer_readonly_icon = '🔒'
 let g:lightline_buffer_modified_icon = '✭'
-let g:lightline_buffer_git_icon = ' '
+let g:lightline_buffer_git_icon = '𝔾 '
 let g:lightline_buffer_ellipsis_icon = '..'
 let g:lightline_buffer_expand_left_icon = '◀ '
 let g:lightline_buffer_expand_right_icon = ' ▶'
