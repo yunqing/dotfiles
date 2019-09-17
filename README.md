@@ -1,4 +1,5 @@
-# Configuration for tmux, vim
+# Development Environment One-Click Setup
+Including shell(`zsh` with `prezto`), git, vim, tmux, pyenv.
 
 ## tmux
 [tmux-plugins/tpm](https://github.com/tmux-plugins/tpm) do not work well with tmux whose version is lower than 2.0.
