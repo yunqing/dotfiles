@@ -1,6 +1,9 @@
 alias playground=$HOME/Projects/playground
 alias kaggle=$HOME/Projects/kaggle
 
+alias ls='/bin/ls -A --group-directories-first --color=auto'
+alias tree='tree -C | less'
+
 # alias gt="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches"
 alias gt="git tree"
 alias ganw="sh -c 'git diff -U0 -w --no-color \$@ | git apply --cached --ignore-whitespace --unidiff-zero -' XXX"
@@ -23,7 +26,16 @@ function http() {
         else
             port=8081
         fi
-        echo "http://"$(ifconfig | grep inet | grep 10 | awk '{print $2}' | cut -d: -f2):$port
-        python -m ComplexHTTPServer $port
+        ip_list=$(ifconfig | grep inet | grep 10 | awk '{print $2}' | cut -d: -f2)
+        echo $ip_list | while read -r line; do echo "http://$line":$port; done
+        python3 -m ComplexHTTPServer $port
+    fi
+}
+
+function rl() {
+    abs_path=$(readlink -f $@)
+    if [ "$abs_path" != "" ]; then
+        echo $abs_path | xclip -selection clipboard -in
+        echo $abs_path
     fi
 }

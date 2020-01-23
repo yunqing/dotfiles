@@ -1,3 +1,9 @@
+# for my tools
+# export PATH="$HOME/local/bin:$PATH"
+
+# for scripts
+# export PATH="$HOME/Projects/scripts:$PATH"
+#
 # # added by CUDA installer, moved here by Gong Yunqing
 # export CUDA_HOME=/usr/local/cuda-8.0
 # export LD_LIBRARY_PATH=${CUDA_HOME}/lib64
@@ -14,11 +20,6 @@
 # 
 # # added by Yunqing Gong
 # #export LD_LIBRARY_PATH="$HOME/anaconda/lib:$LD_LIBRARY_PATH"
-# 
-# # added by Yunqing Gong
-# if [[ -s "$HOME/.aliases" ]]; then
-#   source $HOME/.aliases
-# fi
 # 
 # # add by Gong Yunqing for pyenv
 # export PYENV_ROOT="$HOME/.pyenv"
@@ -48,3 +49,12 @@
 # 
 # # for torch
 # . $HOME/torch/install/bin/torch-activate
+
+export EDITOR=vim
+export VISUAL=vim
+
+# ignore Ctrl-s
+stty -ixon
+
+# ignore Ctrl-d
+set -o ignoreeof
