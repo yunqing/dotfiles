@@ -59,6 +59,7 @@ set synmaxcol=220
 
 " NerdTree
 map <C-l> :NERDTreeToggle<CR>
+nmap ,n :NERDTreeFind<CR>
 
 " if has('persistent_undo')      "check if your vim version supports it
 "  set undofile                 "turn on the feature
