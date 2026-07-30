@@ -1,4 +1,14 @@
 " remove trailing white space(space, tab)
+set wrap
+
+" NeoTree
+" map <C-e> :Neotree reveal reveal_force_cwd<CR>
+
+" Keep register after pasting
+vnoremap <leader>p "_dP
+vnoremap p "_dP
+
+" remove trailing white space(space, tab)
 command Rtws execute "%s/[ \t]\\+$//g"
 map gt :Rtws<cr>
 
@@ -7,16 +17,30 @@ autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd FileType matlab setlocal commentstring=%\ %s
 
+function! GoToHeaderOrCC()
+    let l:extension = expand('%:e')
+    if (l:extension =~ '^.*cc$')
+        execute 'e ' . expand('%:r') . '.h'
+    elseif (l:extension =~ '^.*h$')
+        execute 'e ' . expand('%:r') . '.cc'
+    endif
+endfunction
+
+" nnoremap gl :let @+=expand("%:~:.")<CR>
+
+command GoToH :call GoToHeaderOrCC()
+nnoremap gh :call GoToHeaderOrCC()<CR>
+
 " https://github.com/rhysd/vim-clang-format
-command Fc ClangFormat
-command Fct ClangFormatAutoToggle
-autocmd VimEnter * ClangFormatAutoEnable
+" command Fc ClangFormat
+" command Fct ClangFormatAutoToggle
+" autocmd VimEnter * ClangFormatAutoEnable
 
 set cindent
 set cinoptions=g-1
 
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+match OverLength /\%101v.\+/
 
 " " vim scheme
 " colorscheme jellybeans
@@ -40,16 +64,16 @@ map g' <esc>a''<esc>
 " set number
 set number
 " https://jeffkreeftmeijer.com/vim-number
-augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
-    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
-augroup END
+" augroup numbertoggle
+"     autocmd!
+"     autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
+"     autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
+" augroup END
 
 set mouse=nicr
 
-command Sd SyntasticToggleMode
-command Sc SyntasticCheck
+" command Sd SyntasticToggleMode
+" command Sc SyntasticCheck
 
 " for speed and for shorter lines
 set synmaxcol=220
@@ -67,8 +91,8 @@ nmap ,n :NERDTreeFind<CR>
 " endif
 
 " Goyo
-nnoremap gz :Goyo<cr>
-let g:goyo_linenr = 1
+" nnoremap gz :Goyo<cr>
+" let g:goyo_linenr = 1
 
 set history=1000
 
@@ -81,46 +105,46 @@ set history=1000
 """ For lightline-buffer
 set showtabline=2   " always show tabline
 
-" use lightline-buffer in lightline
-let g:lightline = {
-    \ 'tabline': {
-        \ 'left': [ [ 'bufferinfo' ], [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
-        \ 'right': [ [ 'close' ], ],
-        \ },
-    \ 'component_expand': {
-        \ 'buffercurrent': 'lightline#buffer#buffercurrent2',
-        \ },
-    \ 'component_function': {
-        \ 'bufferbefore': 'lightline#buffer#bufferbefore',
-        \ 'bufferafter': 'lightline#buffer#bufferafter',
-        \ 'bufferinfo': 'lightline#buffer#bufferinfo',
-        \ },
-    \ }
-
-" remap arrow keys
-nnoremap <Left> :bprev<CR>
-nnoremap <Right> :bnext<CR>
-
-" lightline-buffer settings
-let g:lightline_buffer_logo = '✎ '
-let g:lightline_buffer_readonly_icon = '🔒'
-let g:lightline_buffer_modified_icon = '✭'
-let g:lightline_buffer_git_icon = '𝔾 '
-let g:lightline_buffer_ellipsis_icon = '..'
-let g:lightline_buffer_expand_left_icon = '◀ '
-let g:lightline_buffer_expand_right_icon = ' ▶'
-let g:lightline_buffer_active_buffer_left_icon = '<'
-let g:lightline_buffer_active_buffer_right_icon = '>'
-let g:lightline_buffer_separator_icon = ''
-
-let g:lightline_buffer_show_bufnr = 1
-let g:lightline_buffer_rotate = 0
-let g:lightline_buffer_fname_mod = ':t'
-let g:lightline_buffer_excludes = ['vimfiler']
-
-let g:lightline_buffer_maxflen = 30
-let g:lightline_buffer_maxfextlen = 3
-let g:lightline_buffer_minflen = 16
-let g:lightline_buffer_minfextlen = 3
-let g:lightline_buffer_reservelen = 20
-"""
+" " use lightline-buffer in lightline
+" let g:lightline = {
+"     \ 'tabline': {
+"         \ 'left': [ [ 'bufferinfo' ], [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
+"         \ 'right': [ [ 'close' ], ],
+"         \ },
+"     \ 'component_expand': {
+"         \ 'buffercurrent': 'lightline#buffer#buffercurrent2',
+"         \ },
+"     \ 'component_function': {
+"         \ 'bufferbefore': 'lightline#buffer#bufferbefore',
+"         \ 'bufferafter': 'lightline#buffer#bufferafter',
+"         \ 'bufferinfo': 'lightline#buffer#bufferinfo',
+"         \ },
+"     \ }
+"
+" " remap arrow keys
+" nnoremap <Left> :bprev<CR>
+" nnoremap <Right> :bnext<CR>
+"
+" " lightline-buffer settings
+" let g:lightline_buffer_logo = '✎ '
+" let g:lightline_buffer_readonly_icon = '🔒'
+" let g:lightline_buffer_modified_icon = '✭'
+" let g:lightline_buffer_git_icon = '𝔾 '
+" let g:lightline_buffer_ellipsis_icon = '..'
+" let g:lightline_buffer_expand_left_icon = '◀ '
+" let g:lightline_buffer_expand_right_icon = ' ▶'
+" let g:lightline_buffer_active_buffer_left_icon = '<'
+" let g:lightline_buffer_active_buffer_right_icon = '>'
+" let g:lightline_buffer_separator_icon = ''
+"
+" let g:lightline_buffer_show_bufnr = 1
+" let g:lightline_buffer_rotate = 0
+" let g:lightline_buffer_fname_mod = ':t'
+" let g:lightline_buffer_excludes = ['vimfiler']
+"
+" let g:lightline_buffer_maxflen = 30
+" let g:lightline_buffer_maxfextlen = 3
+" let g:lightline_buffer_minflen = 16
+" let g:lightline_buffer_minfextlen = 3
+" let g:lightline_buffer_reservelen = 20
+" """
