@@ -4,6 +4,8 @@ set wrap
 " NeoTree
 " map <C-e> :Neotree reveal reveal_force_cwd<CR>
 
+set shortmess+=A
+
 " Keep register after pasting
 vnoremap <leader>p "_dP
 vnoremap p "_dP
@@ -21,12 +23,17 @@ function! GoToHeaderOrCC()
     let l:extension = expand('%:e')
     if (l:extension =~ '^.*cc$')
         execute 'e ' . expand('%:r') . '.h'
+        " execute "e ".fnameescape(%<.h)
     elseif (l:extension =~ '^.*h$')
         execute 'e ' . expand('%:r') . '.cc'
+        " execute "e ".fnameescape(%<.cc)
     endif
 endfunction
 
+
+
 " nnoremap gl :let @+=expand("%:~:.")<CR>
+" nnoremap gl :let @+=expand('%:')<CR>
 
 command GoToH :call GoToHeaderOrCC()
 nnoremap gh :call GoToHeaderOrCC()<CR>
